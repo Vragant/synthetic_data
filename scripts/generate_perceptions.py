@@ -39,14 +39,24 @@ def lickertResponses(records, headers):
         resp_id = 0
         for i in range(records):
             response_id = resp_id
-            q0 = random.randint(5, 7)
-            q1 = random.randint(5, 7)
-            q2 = random.randint(4, 6)
-            q3 = random.randint(4, 6)
-            q4 = random.randint(2, 4)
-            q5 = random.randint(4, 6)
-            q6 = random.randint(5, 7)
-            q7 = random.randint(4, 6)
+            i_q0 = random.randint(1, 99)
+            i_q1 = random.randint(1, 99)
+            i_q2 = random.randint(1, 99)
+            i_q3 = random.randint(1, 99)
+            i_q4 = random.randint(1, 99)
+            i_q5 = random.randint(1, 99)
+            i_q6 = random.randint(1, 99)
+            i_q7 = random.randint(1, 99)
+
+            q0 = '1' if i_q0 <= 13 else ( random.randint(1,5) if i_q0 > 13 and i_q0 <= 65 else random.randint(5,7) )
+            q1 = '1' if i_q1 <= 11 else ( random.randint(2,4) if i_q1 > 11 and i_q1 <= 40 else ( random.randint(3,6) if i_q1 > 40 and i_q1 <= 78 else random.randint(6,7) ))
+            q2 = '1' if i_q2 <= 13 else ( random.randint(1,3) if i_q2 > 13 and i_q2 <= 32 else ( random.randint(3,6) if i_q2 > 32 and i_q2 <= 76 else random.randint(6,7) ))
+            q3 = '1' if i_q3 <= 13 else ( random.randint(1,3) if i_q3 > 13 and i_q3 <= 40 else ( random.randint(3,6) if i_q3 > 40 and i_q3 <= 85 else random.randint(6,7) ))
+            q4 = random.randint(1,2) if i_q4 <= 16 else ( random.randint(2,3) if i_q4 > 16 and i_q4 <= 34 else ( random.randint(3,6) if i_q4 > 34 and i_q4 <= 75 else random.randint(6,7) ))
+            q5 = '1' if i_q5 <= 5 else ( random.randint(1,2) if i_q5 > 5 and i_q5 <= 20 else ( random.randint(2,5) if i_q5 > 20 and i_q5 <= 61 else random.randint(5,7) ))
+            q6 = random.randint(1,2) if i_q6 <= 27 else ( random.randint(2,3) if i_q6 > 27 and i_q6 <= 40 else ( random.randint(3,6) if i_q6 > 40 and i_q6 <= 72 else random.randint(6,7) ))
+            q7 = random.randint(1,3) if i_q7 <= 38 else ( random.randint(3,4) if i_q7 > 38 and i_q7 <= 47 else ( random.randint(4,7) if i_q7 > 47 and i_q7 <= 97 else '7' ))
+
             writer.writerow({
                 "ResponseID": response_id,
                 "Q0": q0,
@@ -62,9 +72,10 @@ def lickertResponses(records, headers):
 
 
 if __name__ == '__main__':
-    records = 50
+    records = 150
     demographic_headers = ["ResponseID", "Email", "Gender", "Age","Text"]
     lickert_headers = ["ResponseID", "Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7"]
     demographicInfo(records, demographic_headers)
     lickertResponses(records, lickert_headers)
     print("CSV generation complete!")
+
